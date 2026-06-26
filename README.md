@@ -13,9 +13,9 @@ _Tugas Besar Mata Kuliah Web II (IF53413)_
 ---
 **Akun Login:**
 
-ROLE : admin &nbsp;username : `admin@siakad.ac.id` &nbsp;password : `admin123`
+Role Admin username : admin@siakad.ac.id password : admin123
 
-ROLE : mahasiswa &nbsp;username : `yulia@siakad.ac.id` &nbsp;password : `yulia123`
+Role Mahasiswa username : yulia@siakad.ac.id password : yulia123
 
 ---
 
@@ -23,7 +23,7 @@ ROLE : mahasiswa &nbsp;username : `yulia@siakad.ac.id` &nbsp;password : `yulia12
 
 SIAKAD adalah aplikasi yang dibuat untuk mengelola data akademik seperti dosen, mahasiswa, mata kuliah, jadwal, dan KRS dalam satu sistem. Terdapat dua peran pengguna, yaitu Admin yang dapat mengelola seluruh data, dan Mahasiswa yang dapat mengambil KRS serta melihat jadwal kuliah.
 
-Salah satu hal yang membedakan sistem KRS ini dengan sistem KRS pada umumnya adalah setiap mahasiswa telah memiliki **kelas** tertentu (A/B/C/D) yang ditentukan oleh admin saat menambahkan data mahasiswa. Sehingga, ketika mahasiswa membuka halaman **Jadwal Kuliah**, sistem hanya akan menampilkan jadwal dari mata kuliah yang telah diambil **dan** sesuai dengan kelas mahasiswa tersebut, bukan menampilkan seluruh pilihan kelas (A sampai D) untuk satu mata kuliah yang sama. Misalnya, mahasiswa yang berada di kelas B hanya akan melihat jadwal kelas B, meskipun mata kuliah yang sama juga dibuka untuk kelas A, C, dan D.
+Salah satu hal yang membedakan sistem KRS ini dengan sistem KRS pada umumnya adalah setiap mahasiswa telah memiliki kelas tertentu (A/B/C/D) yang ditentukan oleh admin saat menambahkan data mahasiswa. Sehingga, ketika mahasiswa membuka halaman Jadwal Kuliah, sistem hanya akan menampilkan jadwal dari mata kuliah yang telah diambil dan sesuai dengan kelas mahasiswa tersebut, bukan menampilkan seluruh pilihan kelas (A sampai D) untuk satu mata kuliah yang sama. Misalnya, mahasiswa yang berada di kelas B hanya akan melihat jadwal kelas B, meskipun mata kuliah yang sama juga dibuka untuk kelas A, C, dan D.
 
 ## Penjelasan Halaman
 
