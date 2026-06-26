@@ -51,7 +51,7 @@
                     <tbody>
                         @foreach($dataKrs as $item)
                         <tr>
-                            <td class="text-center">{{ $loop->iteration }}</td>
+                            <td class="text-center">{{ $dataKrs->firstItem() + $loop->index }}</td>
                             <td><span class="pill pill-gold">{{ $item->npm }}</span></td>
                             <td class="d-flex align-items-center gap-2">
                                 <div class="avatar-circle" style="width: 30px; height: 30px; font-size: .74rem;">{{ strtoupper(substr($item->mahasiswa->nama ?? '?', 0, 1)) }}</div>
@@ -77,6 +77,8 @@
                     </tbody>
                 </table>
             </div>
+
+            {!! $dataKrs->links('components.pagination') !!}
         @endif
     </div>
 </div>

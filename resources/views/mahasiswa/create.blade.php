@@ -53,6 +53,22 @@
             </div>
 
             <div class="mb-3">
+                <label class="form-label fw-semibold">Kelas</label>
+                <select name="kelas" class="form-select @error('kelas') is-invalid @enderror">
+                    <option value="">-- Pilih Kelas --</option>
+                    @foreach(['A', 'B', 'C', 'D'] as $k)
+                        <option value="{{ $k }}"
+                            {{ old('kelas', $detailMahasiswa->kelas ?? '') == $k ? 'selected' : '' }}>
+                            Kelas {{ $k }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('kelas')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
                 <label class="form-label fw-semibold">Nama Mahasiswa</label>
                 <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama"
                     value="{{ old('nama', $detailMahasiswa->nama ?? '') }}"

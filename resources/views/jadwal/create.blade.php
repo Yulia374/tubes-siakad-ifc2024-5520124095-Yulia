@@ -72,7 +72,7 @@
                     <label class="form-label fw-semibold">Hari</label>
                     <select name="hari" class="form-select @error('hari') is-invalid @enderror">
                         <option value="">-- Pilih --</option>
-                        @foreach(['Senin','Selasa','Rabu','Kamis','Jumat'] as $h)
+                        @foreach(['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'] as $h)
                             <option value="{{ $h }}"
                                 {{ old('hari', $detailJadwal->hari ?? '') == $h ? 'selected' : '' }}>{{ $h }}</option>
                         @endforeach

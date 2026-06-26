@@ -24,6 +24,9 @@
         </div>
 
         <dl class="row mb-0">
+            <dt class="col-sm-4 text-muted">Kelas</dt>
+            <dd class="col-sm-8"><span class="pill pill-olive">{{ $detailMahasiswa->kelas }}</span></dd>
+
             <dt class="col-sm-4 text-muted">Dosen Wali</dt>
             <dd class="col-sm-8">{{ $detailMahasiswa->dosen->nama ?? '-' }} ({{ $detailMahasiswa->nidn }})</dd>
 

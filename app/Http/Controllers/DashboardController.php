@@ -58,6 +58,7 @@ class DashboardController extends Controller
 
             $jadwalHariIni = Jadwal::with(['matakuliah', 'dosen'])
                 ->whereIn('kode_matakuliah', $kodeMkDiambil)
+                ->where('kelas', $mahasiswa->kelas)
                 ->where('hari', $hariIni)
                 ->orderBy('jam')
                 ->get();

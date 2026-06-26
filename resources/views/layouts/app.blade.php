@@ -326,6 +326,27 @@
             margin-bottom: 1rem;
         }
 
+        /* Pagination */
+        .siakad-pagination .page-link {
+            color: var(--siakad-maroon);
+            border-color: var(--siakad-border);
+        }
+
+        .siakad-pagination .page-item.active .page-link {
+            background-color: var(--siakad-maroon);
+            border-color: var(--siakad-maroon);
+            color: #fff;
+        }
+
+        .siakad-pagination .page-item.disabled .page-link {
+            color: #c9c2b8;
+        }
+
+        .siakad-pagination .page-link:hover {
+            background-color: var(--siakad-maroon-light);
+            color: var(--siakad-maroon-dark);
+        }
+
         /* Page heading helper */
         .page-eyebrow {
             font-size: .8rem;

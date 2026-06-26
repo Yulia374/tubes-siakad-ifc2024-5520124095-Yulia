@@ -6,7 +6,7 @@
         <div class="page-eyebrow">Kartu Rencana Studi</div>
         <h4 class="brand-font mb-0">KRS Saya</h4>
         <p class="text-muted small mb-0">
-            <span class="pill pill-maroon">{{ $dataKrs->count() }} Mata Kuliah</span>
+            <span class="pill pill-maroon">{{ $jumlahMatkul }} Mata Kuliah</span>
             <span class="pill pill-gold">{{ $totalSks }} SKS</span>
         </p>
     </div>
@@ -45,7 +45,7 @@
                     <tbody>
                         @foreach($dataKrs as $item)
                         <tr>
-                            <td class="text-center">{{ $loop->iteration }}</td>
+                            <td class="text-center">{{ $dataKrs->firstItem() + $loop->index }}</td>
                             <td><span class="pill pill-gold">{{ $item->kode_matakuliah }}</span></td>
                             <td class="fw-medium">{{ $item->matakuliah->nama_matakuliah ?? '-' }}</td>
                             <td class="text-center">{{ $item->matakuliah->sks ?? '-' }}</td>
@@ -64,6 +64,8 @@
                     </tbody>
                 </table>
             </div>
+
+            {!! $dataKrs->links('components.pagination') !!}
         @endif
     </div>
 </div>

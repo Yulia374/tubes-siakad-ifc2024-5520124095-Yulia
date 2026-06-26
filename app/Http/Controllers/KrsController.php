@@ -25,7 +25,7 @@ class KrsController extends Controller
             });
         }
 
-        $dataKrs = $query->orderBy('id', 'asc')->get();
+        $dataKrs = $query->orderBy('id', 'asc')->paginate(5)->withQueryString();
         return view('krs.index', compact('dataKrs'));
     }
 

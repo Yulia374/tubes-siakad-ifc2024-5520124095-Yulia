@@ -23,7 +23,7 @@ class JadwalController extends Controller
             });
         }
 
-        $dataJadwal = $query->orderBy('id', 'asc')->get();
+        $dataJadwal = $query->orderBy('id', 'asc')->paginate(5)->withQueryString();
         return view('jadwal.index', compact('dataJadwal'));
     }
 

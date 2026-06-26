@@ -20,7 +20,7 @@ class MahasiswaController extends Controller
             });
         }
 
-        $dataMahasiswa = $query->orderBy('npm', 'asc')->get();
+        $dataMahasiswa = $query->orderBy('npm', 'asc')->paginate(5)->withQueryString();
         return view('mahasiswa.index', compact('dataMahasiswa'));
     }
 
@@ -34,16 +34,19 @@ class MahasiswaController extends Controller
     {
         $validated = $request->validate(
             [
-                'npm'  => 'required|max:10|unique:mahasiswa,npm',
-                'nidn' => 'required|exists:dosen,nidn',
-                'nama' => 'required|min:3|max:50',
+                'npm'   => 'required|max:10|unique:mahasiswa,npm',
+                'nidn'  => 'required|exists:dosen,nidn',
+                'kelas' => 'required|in:A,B,C,D',
+                'nama'  => 'required|min:3|max:50',
             ],
             [
-                'npm.required'  => 'NPM tidak boleh dikosongkan',
-                'npm.unique'    => 'NPM sudah terdaftar',
-                'nidn.required' => 'Dosen wali harus dipilih',
-                'nama.required' => 'Nama tidak boleh dikosongkan',
-                'nama.min'      => 'Nama terlalu pendek, minimal 3 karakter',
+                'npm.required'   => 'NPM tidak boleh dikosongkan',
+                'npm.unique'     => 'NPM sudah terdaftar',
+                'nidn.required'  => 'Dosen wali harus dipilih',
+                'kelas.required' => 'Kelas harus dipilih',
+                'kelas.in'       => 'Kelas tidak valid',
+                'nama.required'  => 'Nama tidak boleh dikosongkan',
+                'nama.min'       => 'Nama terlalu pendek, minimal 3 karakter',
             ]
         );
 
@@ -68,13 +71,16 @@ class MahasiswaController extends Controller
     {
         $validated = $request->validate(
             [
-                'nidn' => 'required|exists:dosen,nidn',
-                'nama' => 'required|min:3|max:50',
+                'nidn'  => 'required|exists:dosen,nidn',
+                'kelas' => 'required|in:A,B,C,D',
+                'nama'  => 'required|min:3|max:50',
             ],
             [
-                'nidn.required' => 'Dosen wali harus dipilih',
-                'nama.required' => 'Nama tidak boleh dikosongkan',
-                'nama.min'      => 'Nama terlalu pendek, minimal 3 karakter',
+                'nidn.required'  => 'Dosen wali harus dipilih',
+                'kelas.required' => 'Kelas harus dipilih',
+                'kelas.in'       => 'Kelas tidak valid',
+                'nama.required'  => 'Nama tidak boleh dikosongkan',
+                'nama.min'       => 'Nama terlalu pendek, minimal 3 karakter',
             ]
         );
 

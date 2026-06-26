@@ -19,7 +19,7 @@ class MatakuliahController extends Controller
             });
         }
 
-        $dataMatakuliah = $query->orderBy('kode_matakuliah', 'asc')->get();
+        $dataMatakuliah = $query->orderBy('kode_matakuliah', 'asc')->paginate(5)->withQueryString();
         return view('matakuliah.index', compact('dataMatakuliah'));
     }
 

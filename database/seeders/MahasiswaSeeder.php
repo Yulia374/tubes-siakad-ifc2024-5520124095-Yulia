@@ -16,12 +16,14 @@ class MahasiswaSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
  
-        $nidn_list = DB::table('dosen')->pluck('nidn')->toArray();
+        $nidn_list  = DB::table('dosen')->pluck('nidn')->toArray();
+        $kelas_list = ['A', 'B', 'C', 'D'];
  
         for ($i = 0; $i < 10; $i++) {
             DB::table('mahasiswa')->insert([
                 'npm'        => $faker->unique()->numerify('##########'),
                 'nidn'       => $faker->randomElement($nidn_list),
+                'kelas'      => $faker->randomElement($kelas_list),
                 'nama'       => $faker->name(),
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -7,9 +7,19 @@ use App\Models\Dosen;
 
 class DosenController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $dataDosen = Dosen::orderBy('nidn', 'asc')->get();
+        $query = Dosen::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nidn', 'like', "%{$search}%")
+                  ->orWhere('nama', 'like', "%{$search}%");
+            });
+        }
+
+        $dataDosen = $query->orderBy('nidn', 'asc')->paginate(5)->withQueryString();
         return view('dosen.index', compact('dataDosen'));
     }
 

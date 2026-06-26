@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Jadwal;
 use App\Models\Krs;
 
@@ -22,7 +23,8 @@ class JadwalLihatController extends Controller
         $kodeMkDiambil = Krs::where('npm', $mahasiswa->npm)->pluck('kode_matakuliah');
 
         $query = Jadwal::with(['matakuliah', 'dosen'])
-            ->whereIn('kode_matakuliah', $kodeMkDiambil);
+            ->whereIn('kode_matakuliah', $kodeMkDiambil)
+            ->where('kelas', $mahasiswa->kelas);
 
         if ($request->filled('search')) {
             $search = $request->search;
@@ -33,7 +35,23 @@ class JadwalLihatController extends Controller
             });
         }
 
-        $dataJadwal = $query->orderBy('hari')->orderBy('jam')->get();
+        $semuaJadwal = $query->orderBy('hari')->orderBy('jam')->get();
+
+        // Kelompokkan per mata kuliah, lalu paginate per kelompok (bukan per baris jadwal)
+        // agar semua pilihan kelas dari 1 mata kuliah selalu tampil di halaman yang sama.
+        $jadwalPerMatkul = $semuaJadwal->groupBy('kode_matakuliah');
+
+        $perPage = 5;
+        $page = $request->input('page', 1);
+        $items = $jadwalPerMatkul->forPage($page, $perPage);
+
+        $dataJadwal = new LengthAwarePaginator(
+            $items,
+            $jadwalPerMatkul->count(),
+            $perPage,
+            $page,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
 
         return view('jadwal.mahasiswa-index', compact('dataJadwal'));
     }

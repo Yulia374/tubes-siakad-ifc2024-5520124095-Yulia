@@ -29,32 +29,43 @@
                     <p class="mb-0">Tidak ada jadwal yang cocok dengan pencarian.</p>
                 </div>
             @else
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead>
-                            <tr>
-                                <th class="text-center" width="6%">No</th>
-                                <th width="28%">Mata Kuliah</th>
-                                <th width="24%">Dosen</th>
-                                <th class="text-center" width="14%">Kelas</th>
-                                <th width="14%">Hari</th>
-                                <th>Jam</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($dataJadwal as $item)
-                            <tr>
-                                <td class="text-center">{{ $loop->iteration }}</td>
-                                <td class="fw-medium">{{ $item->matakuliah->nama_matakuliah ?? '-' }}</td>
-                                <td>{{ $item->dosen->nama ?? '-' }}</td>
-                                <td class="text-center"><span class="pill pill-maroon">{{ $item->kelas }}</span></td>
-                                <td><span class="pill pill-olive">{{ $item->hari }}</span></td>
-                                <td>{{ \Carbon\Carbon::parse($item->jam)->format('H:i') }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <p class="text-muted small mb-3">
+                    <i class="bi bi-info-circle"></i>
+                    Jadwal di bawah ini hanya menampilkan kelas Anda sendiri (Kelas {{ Auth::user()->mahasiswa->kelas ?? '-' }}).
+                </p>
+
+                @foreach($dataJadwal as $kodeMk => $jadwalPerMk)
+                <div class="mb-4">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span class="pill pill-gold">{{ $kodeMk }}</span>
+                        <span class="fw-semibold">{{ $jadwalPerMk->first()->matakuliah->nama_matakuliah ?? '-' }}</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" width="12%">Kelas</th>
+                                    <th width="38%">Dosen</th>
+                                    <th width="20%">Hari</th>
+                                    <th>Jam</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($jadwalPerMk as $item)
+                                <tr>
+                                    <td class="text-center"><span class="pill pill-maroon">{{ $item->kelas }}</span></td>
+                                    <td>{{ $item->dosen->nama ?? '-' }}</td>
+                                    <td><span class="pill pill-olive">{{ $item->hari }}</span></td>
+                                    <td>{{ \Carbon\Carbon::parse($item->jam)->format('H:i') }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                @endforeach
+
+                {!! $dataJadwal->links('components.pagination') !!}
             @endif
         @endif
     </div>

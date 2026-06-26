@@ -48,7 +48,7 @@
                     <tbody>
                         @foreach($dataMatakuliah as $item)
                         <tr>
-                            <td class="text-center">{{ $loop->iteration }}</td>
+                            <td class="text-center">{{ $dataMatakuliah->firstItem() + $loop->index }}</td>
                             <td><span class="pill pill-gold">{{ $item->kode_matakuliah }}</span></td>
                             <td class="fw-medium">{{ $item->nama_matakuliah }}</td>
                             <td class="text-center"><span class="pill pill-maroon">{{ $item->sks }} SKS</span></td>
@@ -73,6 +73,8 @@
                     </tbody>
                 </table>
             </div>
+
+            {!! $dataMatakuliah->links('components.pagination') !!}
         @endif
     </div>
 </div>

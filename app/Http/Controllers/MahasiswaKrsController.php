@@ -28,10 +28,15 @@ class MahasiswaKrsController extends Controller
     {
         $npm = $this->npmAktif();
 
-        $dataKrs  = Krs::with('matakuliah')->where('npm', $npm)->get();
-        $totalSks = $dataKrs->sum(fn ($krs) => $krs->matakuliah->sks ?? 0);
+        $dataKrs = Krs::with('matakuliah')->where('npm', $npm)->orderBy('id')->paginate(5);
 
-        return view('krs.mahasiswa-index', compact('dataKrs', 'totalSks'));
+        // Total SKS & jumlah matkul dihitung dari seluruh data (bukan hanya halaman aktif).
+        $totalSks = Krs::where('krs.npm', $npm)
+            ->join('matakuliah', 'krs.kode_matakuliah', '=', 'matakuliah.kode_matakuliah')
+            ->sum('matakuliah.sks');
+        $jumlahMatkul = $dataKrs->total();
+
+        return view('krs.mahasiswa-index', compact('dataKrs', 'totalSks', 'jumlahMatkul'));
     }
 
     /**

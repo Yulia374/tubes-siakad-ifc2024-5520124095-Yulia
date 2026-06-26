@@ -50,7 +50,7 @@
                     <tbody>
                         @foreach($dataJadwal as $item)
                         <tr>
-                            <td class="text-center">{{ $loop->iteration }}</td>
+                            <td class="text-center">{{ $dataJadwal->firstItem() + $loop->index }}</td>
                             <td class="fw-medium">{{ $item->matakuliah->nama_matakuliah ?? '-' }}</td>
                             <td>{{ $item->dosen->nama ?? '-' }}</td>
                             <td class="text-center"><span class="pill pill-maroon">{{ $item->kelas }}</span></td>
@@ -77,6 +77,8 @@
                     </tbody>
                 </table>
             </div>
+
+            {!! $dataJadwal->links('components.pagination') !!}
         @endif
     </div>
 </div>
