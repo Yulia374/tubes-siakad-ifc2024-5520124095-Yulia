@@ -6,7 +6,7 @@
 
 _Tugas Besar Mata Kuliah Web II (IF53413)_
 
-🔗 siakadyulia.infinityfreeapp.com
+🔗 http://siakadyulia.infinityfreeapp.com/
 
 </div>
 
