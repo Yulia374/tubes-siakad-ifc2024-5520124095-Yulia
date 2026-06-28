@@ -11,7 +11,7 @@ _Tugas Besar Mata Kuliah Web II (IF53413)_
 </div>
 
 ---
-**Akun Loginn:**
+**Akun Login:**
 
 Role Admin username : admin@siakad.ac.id password : admin123
 
