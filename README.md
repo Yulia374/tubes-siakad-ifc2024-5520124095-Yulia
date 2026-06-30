@@ -7,6 +7,7 @@
 _Tugas Besar Mata Kuliah Web II (IF53413)_
 
 🔗 http://siakadyulia.infinityfreeapp.com/
+(jika link tidak bisa dibuka di chrome, bisa dicoba buka di edge)
 
 </div>
 
